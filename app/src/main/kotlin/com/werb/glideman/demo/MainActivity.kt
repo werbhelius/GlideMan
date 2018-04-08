@@ -1,6 +1,7 @@
 package com.werb.glideman.demo
 
 import android.os.Bundle
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory
 import android.support.v7.app.AppCompatActivity
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.werb.glideman.CircleTransformation

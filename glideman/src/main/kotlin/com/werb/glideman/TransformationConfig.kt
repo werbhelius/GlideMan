@@ -1,7 +1,6 @@
 package com.werb.glideman
 
-import android.graphics.Bitmap
-import android.graphics.Canvas
+import android.graphics.*
 import android.os.Build
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
 
@@ -34,5 +33,22 @@ internal interface TransformationConfig {
         return Bitmap.Config.ARGB_8888
     }
 
+    fun getPaint(destMinEdge: Int, alphaSafeBitmap: Bitmap) = Paint().apply {
+        isAntiAlias = true
+        shader = getPaintShader(destMinEdge, alphaSafeBitmap)
+    }
+
+    private fun getPaintShader(destMinEdge: Int, alphaSafeBitmap: Bitmap): BitmapShader {
+        val width = (alphaSafeBitmap.width - destMinEdge) / 2f
+        val height = (alphaSafeBitmap.height - destMinEdge) / 2f
+        val shader = BitmapShader(alphaSafeBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
+        if (width != 0f || height != 0f) {
+            // source isn't square, move viewport to center
+            val matrix = Matrix()
+            matrix.setTranslate(-width, -height)
+            shader.setLocalMatrix(matrix)
+        }
+        return shader
+    }
 
 }
