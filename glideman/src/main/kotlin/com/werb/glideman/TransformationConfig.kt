@@ -33,14 +33,14 @@ internal interface TransformationConfig {
         return Bitmap.Config.ARGB_8888
     }
 
-    fun getPaint(destMinEdge: Int, alphaSafeBitmap: Bitmap) = Paint().apply {
+    fun getPaint(targetWidth: Int, targetHeight: Int, alphaSafeBitmap: Bitmap) = Paint().apply {
         isAntiAlias = true
-        shader = getPaintShader(destMinEdge, alphaSafeBitmap)
+        shader = getPaintShader(targetWidth, targetHeight, alphaSafeBitmap)
     }
 
-    private fun getPaintShader(destMinEdge: Int, alphaSafeBitmap: Bitmap): BitmapShader {
-        val width = (alphaSafeBitmap.width - destMinEdge) / 2f
-        val height = (alphaSafeBitmap.height - destMinEdge) / 2f
+    private fun getPaintShader(targetWidth: Int, targetHeight: Int, alphaSafeBitmap: Bitmap): BitmapShader {
+        val width = (alphaSafeBitmap.width - targetWidth) / 2f
+        val height = (alphaSafeBitmap.height - targetHeight) / 2f
         val shader = BitmapShader(alphaSafeBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
         if (width != 0f || height != 0f) {
             // source isn't square, move viewport to center

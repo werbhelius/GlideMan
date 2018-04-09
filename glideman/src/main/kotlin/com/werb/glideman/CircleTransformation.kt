@@ -22,7 +22,7 @@ class CircleTransformation : BitmapTransformation(), TransformationConfig {
         val bitmap = pool.get(destMinEdge, destMinEdge, getAlphaSafeConfig(toTransform)).apply { setHasAlpha(true) }
         val alphaSafeBitmap = getAlphaSafeBitmap(pool, toTransform)
         val canvas = Canvas(bitmap)
-        canvas.drawCircle(radius, radius, radius, getPaint(destMinEdge, alphaSafeBitmap))
+        canvas.drawCircle(radius, radius, radius, getPaint(destMinEdge, destMinEdge, alphaSafeBitmap))
         clear(canvas)
 
         // save in pool to reuse
