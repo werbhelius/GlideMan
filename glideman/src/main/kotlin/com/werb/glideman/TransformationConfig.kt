@@ -39,11 +39,11 @@ internal interface TransformationConfig {
         shader = getPaintShader(targetWidth, targetHeight, alphaSafeBitmap)
     }
 
-    fun getBoardPaint(boardWidth: Float, boardColor: Int) = Paint().apply {
+    fun getBoardPaint(borderWidth: Float, borderColor: Int) = Paint().apply {
         isAntiAlias = true
         isDither = true
-        strokeWidth = boardWidth
-        color = boardColor
+        strokeWidth = borderWidth
+        color = borderColor
         style = Paint.Style.STROKE
     }
 

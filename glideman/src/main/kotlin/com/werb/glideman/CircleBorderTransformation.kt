@@ -10,10 +10,10 @@ import java.security.MessageDigest
 /**
  * Created by wanbo on 2018/4/9.
  */
-class CircleBoardTransformation(private val boardWidth: Int, private val boardColor: Int) : BitmapTransformation(), TransformationConfig {
+class CircleBorderTransformation(private val borderWidth: Int, private val borderColor: Int) : BitmapTransformation(), TransformationConfig {
 
     private val id = this::class.java.name
-    private val boardWidthFloat = Resources.getSystem().displayMetrics.density * boardWidth
+    private val borderWidthFloat = Resources.getSystem().displayMetrics.density * borderWidth
 
     override fun transform(pool: BitmapPool, toTransform: Bitmap, outWidth: Int, outHeight: Int): Bitmap {
         // find mix edge
@@ -24,10 +24,10 @@ class CircleBoardTransformation(private val boardWidth: Int, private val boardCo
         val bitmap = pool.get(destMinEdge, destMinEdge, getAlphaSafeConfig(toTransform)).apply { setHasAlpha(true) }
         val alphaSafeBitmap = getAlphaSafeBitmap(pool, toTransform)
         val canvas = Canvas(bitmap)
-        canvas.drawCircle(radius, radius, radius - 2 * boardWidth, getPaint(destMinEdge - 2 * boardWidth, destMinEdge - 2 * boardWidth, alphaSafeBitmap))
+        canvas.drawCircle(radius, radius, radius - 2 * borderWidth, getPaint(destMinEdge - 2 * borderWidth, destMinEdge - 2 * borderWidth, alphaSafeBitmap))
         // draw board
-        val boardPaint = getBoardPaint(boardWidthFloat, boardColor)
-        canvas.drawCircle(radius, radius, radius - 2 * boardWidth, boardPaint)
+        val boardPaint = getBoardPaint(borderWidthFloat, borderColor)
+        canvas.drawCircle(radius, radius, radius - 2 * borderWidth, boardPaint)
 
         clear(canvas)
 
@@ -43,7 +43,7 @@ class CircleBoardTransformation(private val boardWidth: Int, private val boardCo
     }
 
     override fun equals(other: Any?): Boolean {
-        return other is CircleBoardTransformation
+        return other is CircleBorderTransformation
     }
 
     override fun hashCode(): Int {
