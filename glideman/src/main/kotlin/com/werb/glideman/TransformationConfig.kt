@@ -35,7 +35,16 @@ internal interface TransformationConfig {
 
     fun getPaint(targetWidth: Int, targetHeight: Int, alphaSafeBitmap: Bitmap) = Paint().apply {
         isAntiAlias = true
+        isDither = true
         shader = getPaintShader(targetWidth, targetHeight, alphaSafeBitmap)
+    }
+
+    fun getBoardPaint(boardWidth: Float, boardColor: Int) = Paint().apply {
+        isAntiAlias = true
+        isDither = true
+        strokeWidth = boardWidth
+        color = boardColor
+        style = Paint.Style.STROKE
     }
 
     private fun getPaintShader(targetWidth: Int, targetHeight: Int, alphaSafeBitmap: Bitmap): BitmapShader {
