@@ -5,6 +5,7 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory
 import android.support.v7.app.AppCompatActivity
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.werb.glideman.CircleTransformation
+import com.werb.glideman.RoundTransformation
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
             GlideApp.with(this)
                 .load(url)
                 .transition(withCrossFade())
-                .transform(CircleTransformation())
+                .transform(RoundTransformation(5))
                 .into(imageView)
         }
 
