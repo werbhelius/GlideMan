@@ -20,7 +20,7 @@ internal interface TransformationConfig {
         if (safeConfig == maybeAlphaSafe.config) {
             return maybeAlphaSafe
         }
-        val argbBitmap = pool.get(maybeAlphaSafe.width, maybeAlphaSafe.height, Bitmap.Config.RGB_565)
+        val argbBitmap = pool.get(maybeAlphaSafe.width, maybeAlphaSafe.height, safeConfig)
         Canvas(argbBitmap).drawBitmap(maybeAlphaSafe, 0f, 0f, null)
         return argbBitmap
     }
@@ -49,17 +49,28 @@ internal interface TransformationConfig {
     }
 
     private fun getPaintShader(targetWidth: Int, targetHeight: Int, alphaSafeBitmap: Bitmap): BitmapShader {
+
         val shader = BitmapShader(alphaSafeBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
-        val width = (alphaSafeBitmap.width - targetWidth) / 2f
-        val height = (alphaSafeBitmap.height - targetHeight) / 2f
+
+        val srcWidth = alphaSafeBitmap.width
+        val srcHeight = alphaSafeBitmap.height
+        val scaleX = targetWidth / srcWidth.toFloat()
+        val scaleY = targetHeight / srcHeight.toFloat()
+        val maxScale = Math.max(scaleX, scaleY)
+
+        val scaledWidth = maxScale * srcWidth
+        val scaledHeight = maxScale * srcHeight
+
+        val left = (targetWidth - scaledWidth) / 2f
+        val top = (targetWidth - scaledHeight) / 2f
+
         val matrix = Matrix()
-        if (alphaSafeBitmap.width != alphaSafeBitmap.height) {
-            if (width != 0f || height != 0f) {
-                // source isn't square, move viewport to center
-                matrix.setTranslate(-width, -height)
-            }
-        }
+
+        matrix.setScale(maxScale, maxScale)
+        matrix.postTranslate(left, top)
+
         shader.setLocalMatrix(matrix)
+
         return shader
     }
 
