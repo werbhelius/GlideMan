@@ -16,15 +16,14 @@ class CircleBorderTransformation(borderWidth: Float, private val borderColor: In
 
     override fun transform(pool: BitmapPool, toTransform: Bitmap, outWidth: Int, outHeight: Int): Bitmap {
         // find mix edge
-        val destMinEdge = Math.min(toTransform.width, toTransform.height)
+        val destMinEdge = Math.min(outWidth, outHeight)
         // circle radius
         val radius = destMinEdge / 2f
 
         val bitmap = pool.get(destMinEdge, destMinEdge, getAlphaSafeConfig(toTransform)).apply { setHasAlpha(true) }
         val alphaSafeBitmap = getAlphaSafeBitmap(pool, toTransform)
         val canvas = Canvas(bitmap)
-        // plus 1 to ensure don't have white edges.
-        canvas.drawCircle(radius, radius, radius - borderWidthPx + 1, getPaint(destMinEdge - 2 * borderWidthPx, destMinEdge - 2 * borderWidthPx, alphaSafeBitmap))
+        canvas.drawCircle(radius, radius, radius - borderWidthPx, getPaint(destMinEdge - 2 * borderWidthPx, destMinEdge - 2 * borderWidthPx, alphaSafeBitmap))
         // draw board
         val boardPaint = getBoardPaint(borderWidthPx.toFloat(), borderColor)
         canvas.drawCircle(radius, radius, radius - borderWidthPx / 2, boardPaint)

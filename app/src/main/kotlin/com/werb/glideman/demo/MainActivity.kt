@@ -12,40 +12,40 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val url = "http://1.bp.blogspot.com/-KpmNfEbcwGU/VM-lBioNnAI/AAAAAAAAAGc/0u-KQ_GfVBg/w1200-h630-p-k-no-nu/4512-TomopopWeek1OnePiece.gif"
+        val url = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523375013640&di=b8f06820750af771d000e8d98f7133a4&imgtype=0&src=http%3A%2F%2Fi1.hdslb.com%2Fbfs%2Farchive%2Fee159390c4cafb3b0fe5894a955d56550bc483d9.jpg"
 
         button.setOnClickListener {
             GlideApp.with(this)
                 .load(url)
                 .transition(withCrossFade())
-                .transform(CircleCropTransformation())
+                .transform(CircleTransformation())
                 .into(imageView1)
             GlideApp.with(this)
                 .load(url)
                 .transition(withCrossFade())
-                .transform(CircleTransformation())
+                .transform(RoundTransformation(10f))
                 .into(imageView2)
-//            GlideApp.with(this)
-//                .load(url)
-//                .transition(withCrossFade())
-//                .transform(CircleBorderTransformation(5f, resources.getColor(R.color.colorPrimaryDark)))
-//                .into(imageView3)
-//            GlideApp.with(this)
-//                .load(url)
-//                .transition(withCrossFade())
-//                .transform(CircleBorderWithPaddingTransformation(
-//                    5f,
-//                    resources.getColor(R.color.colorPrimaryDark),
-//                    5f,
-//                    resources.getColor(android.R.color.white)))
-//                .into(imageView4)
+            GlideApp.with(this)
+                .load(url)
+                .transition(withCrossFade())
+                .transform(CircleBorderTransformation(5f, resources.getColor(R.color.colorPrimaryDark)))
+                .into(imageView3)
+            GlideApp.with(this)
+                .load(url)
+                .transition(withCrossFade())
+                .transform(CircleBorderWithPaddingTransformation(
+                    5f,
+                    resources.getColor(R.color.colorPrimaryDark),
+                    5f,
+                    resources.getColor(android.R.color.white)))
+                .into(imageView4)
         }
 
         button2.setOnClickListener {
             GlideApp.with(this).clear(imageView1)
             GlideApp.with(this).clear(imageView2)
-//            GlideApp.with(this).clear(imageView3)
-//            GlideApp.with(this).clear(imageView4)
+            GlideApp.with(this).clear(imageView3)
+            GlideApp.with(this).clear(imageView4)
         }
     }
 }

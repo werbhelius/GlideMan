@@ -66,7 +66,6 @@ internal interface TransformationConfig {
 
         val matrix = Matrix()
 
-        matrix.setScale(maxScale, maxScale)
         matrix.postTranslate(left, top)
 
         shader.setLocalMatrix(matrix)

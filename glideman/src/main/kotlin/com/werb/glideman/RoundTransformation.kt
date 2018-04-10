@@ -1,6 +1,5 @@
 package com.werb.glideman
 
-import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
@@ -19,14 +18,11 @@ class RoundTransformation(corner: Float) : BitmapTransformation(), Transformatio
 
     override fun transform(pool: BitmapPool, toTransform: Bitmap, outWidth: Int, outHeight: Int): Bitmap {
 
-        val targetWidth = toTransform.width
-        val targetHeight = toTransform.height
-
-        val bitmap = pool.get(targetWidth, targetHeight, getAlphaSafeConfig(toTransform)).apply { setHasAlpha(true) }
+        val bitmap = pool.get(outWidth, outWidth, getAlphaSafeConfig(toTransform)).apply { setHasAlpha(true) }
         val alphaSafeBitmap = getAlphaSafeBitmap(pool, toTransform)
         val canvas = Canvas(bitmap)
-        val paint = getPaint(targetWidth, targetWidth, alphaSafeBitmap)
-        val rectF = RectF(0f, 0f, targetWidth.toFloat(), targetWidth.toFloat())
+        val paint = getPaint(outWidth, outWidth, alphaSafeBitmap)
+        val rectF = RectF(0f, 0f, outWidth.toFloat(), outWidth.toFloat())
         canvas.drawRoundRect(rectF, cornerFloat.toFloat(), cornerFloat.toFloat(), paint)
         clear(canvas)
 
