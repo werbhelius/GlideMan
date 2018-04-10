@@ -49,15 +49,17 @@ internal interface TransformationConfig {
     }
 
     private fun getPaintShader(targetWidth: Int, targetHeight: Int, alphaSafeBitmap: Bitmap): BitmapShader {
+        val shader = BitmapShader(alphaSafeBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
         val width = (alphaSafeBitmap.width - targetWidth) / 2f
         val height = (alphaSafeBitmap.height - targetHeight) / 2f
-        val shader = BitmapShader(alphaSafeBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
-        if (width != 0f || height != 0f) {
-            // source isn't square, move viewport to center
-            val matrix = Matrix()
-            matrix.setTranslate(-width, -height)
-            shader.setLocalMatrix(matrix)
+        val matrix = Matrix()
+        if (alphaSafeBitmap.width != alphaSafeBitmap.height) {
+            if (width != 0f || height != 0f) {
+                // source isn't square, move viewport to center
+                matrix.setTranslate(-width, -height)
+            }
         }
+        shader.setLocalMatrix(matrix)
         return shader
     }
 

@@ -1,6 +1,5 @@
 package com.werb.glideman
 
-import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
@@ -24,7 +23,8 @@ class CircleBorderTransformation(borderWidth: Float, private val borderColor: In
         val bitmap = pool.get(destMinEdge, destMinEdge, getAlphaSafeConfig(toTransform)).apply { setHasAlpha(true) }
         val alphaSafeBitmap = getAlphaSafeBitmap(pool, toTransform)
         val canvas = Canvas(bitmap)
-        canvas.drawCircle(radius, radius, radius - borderWidthPx / 2, getPaint(destMinEdge - 2 * borderWidthPx, destMinEdge - 2 * borderWidthPx, alphaSafeBitmap))
+        // plus 1 to ensure don't have white edges.
+        canvas.drawCircle(radius, radius, radius - borderWidthPx + 1, getPaint(destMinEdge - 2 * borderWidthPx, destMinEdge - 2 * borderWidthPx, alphaSafeBitmap))
         // draw board
         val boardPaint = getBoardPaint(borderWidthPx.toFloat(), borderColor)
         canvas.drawCircle(radius, radius, radius - borderWidthPx / 2, boardPaint)
