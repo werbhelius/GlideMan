@@ -11,9 +11,9 @@ import android.graphics.RectF
 /**
  * Created by wanbo on 2018/4/8.
  */
-class RoundTransformation(corner: Int) : BitmapTransformation(), TransformationConfig {
+class RoundTransformation(corner: Float) : BitmapTransformation(), TransformationConfig {
 
-    private val cornerFloat = Resources.getSystem().displayMetrics.density * corner
+    private val cornerFloat = dip2px(corner)
 
     private val id = this::class.java.name
 
@@ -27,7 +27,7 @@ class RoundTransformation(corner: Int) : BitmapTransformation(), TransformationC
         val canvas = Canvas(bitmap)
         val paint = getPaint(targetWidth, targetWidth, alphaSafeBitmap)
         val rectF = RectF(0f, 0f, targetWidth.toFloat(), targetWidth.toFloat())
-        canvas.drawRoundRect(rectF, cornerFloat, cornerFloat, paint)
+        canvas.drawRoundRect(rectF, cornerFloat.toFloat(), cornerFloat.toFloat(), paint)
         clear(canvas)
 
         // save in pool to reuse
