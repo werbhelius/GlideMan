@@ -5,29 +5,29 @@ import android.graphics.Canvas
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation
 import java.security.MessageDigest
+import android.graphics.RectF
 
 /**
- * Created by wanbo on 2018/4/9.
+ * Created by wanbo on 2018/4/8.
  */
-class CircleBorderTransformation(borderWidth: Float, private val borderColor: Int) : BitmapTransformation(), TransformationConfig {
+class RoundBorderTransformation(corner: Float, borderWidth: Float, private val borderColor: Int) : BitmapTransformation(), TransformationConfig {
 
-    private val id = this::class.java.name
+    private val cornerFloat = dip2px(corner)
     private val borderWidthPx = dip2px(borderWidth)
 
-    override fun transform(pool: BitmapPool, toTransform: Bitmap, outWidth: Int, outHeight: Int): Bitmap {
-        // find mix edge
-        val destMinEdge = Math.min(outWidth, outHeight)
-        // circle radius
-        val radius = destMinEdge / 2f
+    private val id = this::class.java.name
 
-        val bitmap = pool.get(destMinEdge, destMinEdge, getAlphaSafeConfig(toTransform)).apply { setHasAlpha(true) }
+    override fun transform(pool: BitmapPool, toTransform: Bitmap, outWidth: Int, outHeight: Int): Bitmap {
+
+        val bitmap = pool.get(outWidth, outWidth, getAlphaSafeConfig(toTransform)).apply { setHasAlpha(true) }
         val alphaSafeBitmap = getAlphaSafeBitmap(pool, toTransform)
         val canvas = Canvas(bitmap)
-        canvas.drawCircle(radius, radius, radius - borderWidthPx, getPaint(destMinEdge - 2 * borderWidthPx, destMinEdge - 2 * borderWidthPx, alphaSafeBitmap))
-        // draw border
+        val paint = getPaint(outWidth, outWidth, alphaSafeBitmap)
+        val rectF = RectF(0f, 0f, outWidth.toFloat(), outWidth.toFloat())
+        canvas.drawRoundRect(rectF, cornerFloat.toFloat(), cornerFloat.toFloat(), paint)
         val boardPaint = getBoardPaint(borderWidthPx.toFloat(), borderColor)
-        canvas.drawCircle(radius, radius, radius - borderWidthPx / 2, boardPaint)
-
+        val rectF2 = RectF(borderWidthPx / 2f, borderWidthPx / 2f, outWidth.toFloat() - borderWidthPx / 2f, outWidth.toFloat() - borderWidthPx / 2f)
+        canvas.drawRoundRect(rectF2, cornerFloat - borderWidthPx / 2f, cornerFloat - borderWidthPx / 2f, boardPaint)
         clear(canvas)
 
         // save in pool to reuse
@@ -35,6 +35,7 @@ class CircleBorderTransformation(borderWidth: Float, private val borderColor: In
             pool.put(toTransform)
         }
         return bitmap
+
     }
 
     override fun updateDiskCacheKey(messageDigest: MessageDigest) {
@@ -42,11 +43,10 @@ class CircleBorderTransformation(borderWidth: Float, private val borderColor: In
     }
 
     override fun equals(other: Any?): Boolean {
-        return other is CircleBorderTransformation
+        return other is RoundBorderTransformation
     }
 
     override fun hashCode(): Int {
         return id.hashCode()
     }
-
 }

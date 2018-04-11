@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
             GlideApp.with(this)
                 .load(url)
                 .transition(withCrossFade())
-                .transform(RoundTransformation(10f))
+                .transform(RoundBorderTransformation(10f, 5f, resources.getColor(R.color.colorPrimaryDark)))
                 .into(imageView2)
             GlideApp.with(this)
                 .load(url)

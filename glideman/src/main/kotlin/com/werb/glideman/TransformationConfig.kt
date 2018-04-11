@@ -8,7 +8,7 @@ import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
 /**
  * Created by wanbo on 2018/4/7.
  */
-internal interface TransformationConfig {
+interface TransformationConfig {
 
     fun clear(canvas: Canvas) {
         canvas.setBitmap(null)

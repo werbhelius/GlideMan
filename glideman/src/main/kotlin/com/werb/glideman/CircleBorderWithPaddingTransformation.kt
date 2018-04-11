@@ -30,7 +30,7 @@ class CircleBorderWithPaddingTransformation(borderWidth: Float,
         val alphaSafeBitmap = getAlphaSafeBitmap(pool, toTransform)
         val canvas = Canvas(bitmap)
         canvas.drawCircle(radius, radius, radius - diff + 1, getPaint(destMinEdge - 2 * diff, destMinEdge - 2 * diff, alphaSafeBitmap))
-        // draw board
+        // draw border
         val boardPaint = getBoardPaint(borderWidthPx.toFloat(), borderColor)
         canvas.drawCircle(radius, radius, radius - borderWidthPx / 2f, boardPaint)
         // draw padding
