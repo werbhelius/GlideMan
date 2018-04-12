@@ -1,30 +1,25 @@
 package com.werb.glideman
 
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation
 import java.security.MessageDigest
 
-
 /**
- * Created by wanbo on 2018/4/7.
+ * Created by wanbo on 2018/4/12.
  */
-class CircleTransformation : BitmapTransformation(), TransformationConfig {
+class MaskColorTransformation(private val color: Int): BitmapTransformation(), TransformationConfig {
 
     private val id = this::class.java.name
 
     override fun transform(pool: BitmapPool, toTransform: Bitmap, outWidth: Int, outHeight: Int): Bitmap {
-        // find mix edge
-        val destMinEdge = Math.min(outWidth, outWidth)
-        // circle radius
-        val radius = destMinEdge / 2f
-
-        val bitmap = pool.get(destMinEdge, destMinEdge, getAlphaSafeConfig(toTransform)).apply { setHasAlpha(true) }
-        val alphaSafeBitmap = getAlphaSafeBitmap(pool, toTransform)
+        val bitmap = pool.get(outWidth, outWidth, getAlphaSafeConfig(toTransform)).apply { setHasAlpha(true) }
         val canvas = Canvas(bitmap)
-        canvas.drawCircle(radius, radius, radius, getShaderPaint(destMinEdge, destMinEdge, alphaSafeBitmap))
-        clear(canvas)
-
+        val alphaSafeBitmap = getAlphaSafeBitmap(pool, toTransform)
+        val matrix = getMatrix(outWidth, outHeight, alphaSafeBitmap.width, alphaSafeBitmap.height)
+        canvas.drawBitmap(alphaSafeBitmap, matrix, getDefaultPaint())
+        canvas.drawColor(color)
         // save in pool to reuse
         if (alphaSafeBitmap != toTransform) {
             pool.put(toTransform)
@@ -37,7 +32,7 @@ class CircleTransformation : BitmapTransformation(), TransformationConfig {
     }
 
     override fun equals(other: Any?): Boolean {
-        return other is CircleTransformation
+        return other is MaskColorTransformation
     }
 
     override fun hashCode(): Int {

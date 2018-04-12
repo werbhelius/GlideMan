@@ -34,7 +34,7 @@ interface TransformationConfig {
         return Bitmap.Config.ARGB_8888
     }
 
-    fun getPaint(targetWidth: Int, targetHeight: Int, alphaSafeBitmap: Bitmap) = Paint().apply {
+    fun getShaderPaint(targetWidth: Int, targetHeight: Int, alphaSafeBitmap: Bitmap) = Paint().apply {
         isAntiAlias = true
         isDither = true
         shader = getPaintShader(targetWidth, targetHeight, alphaSafeBitmap)
@@ -48,12 +48,21 @@ interface TransformationConfig {
         style = Paint.Style.STROKE
     }
 
+    fun getDefaultPaint(paintColor: Int? = null) = Paint().apply {
+        isAntiAlias = true
+        isDither = true
+        paintColor?.let { color = it }
+    }
+
     private fun getPaintShader(targetWidth: Int, targetHeight: Int, alphaSafeBitmap: Bitmap): BitmapShader {
 
         val shader = BitmapShader(alphaSafeBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
+        shader.setLocalMatrix(getMatrix(targetWidth, targetHeight, alphaSafeBitmap.width, alphaSafeBitmap.height))
 
-        val srcWidth = alphaSafeBitmap.width
-        val srcHeight = alphaSafeBitmap.height
+        return shader
+    }
+
+    fun getMatrix(targetWidth: Int, targetHeight: Int, srcWidth: Int, srcHeight: Int): Matrix {
         val scaleX = targetWidth / srcWidth.toFloat()
         val scaleY = targetHeight / srcHeight.toFloat()
         val maxScale = Math.max(scaleX, scaleY)
@@ -67,10 +76,7 @@ interface TransformationConfig {
         val matrix = Matrix()
 
         matrix.postTranslate(left, top)
-
-        shader.setLocalMatrix(matrix)
-
-        return shader
+        return matrix
     }
 
     fun dip2px(dpValue: Float): Int {

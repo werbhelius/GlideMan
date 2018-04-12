@@ -22,7 +22,7 @@ class RoundBorderTransformation(corner: Float, borderWidth: Float, private val b
         val bitmap = pool.get(outWidth, outWidth, getAlphaSafeConfig(toTransform)).apply { setHasAlpha(true) }
         val alphaSafeBitmap = getAlphaSafeBitmap(pool, toTransform)
         val canvas = Canvas(bitmap)
-        val paint = getPaint(outWidth, outWidth, alphaSafeBitmap)
+        val paint = getShaderPaint(outWidth, outWidth, alphaSafeBitmap)
         val rectF = RectF(0f, 0f, outWidth.toFloat(), outWidth.toFloat())
         canvas.drawRoundRect(rectF, cornerFloat.toFloat(), cornerFloat.toFloat(), paint)
         val boardPaint = getBoardPaint(borderWidthPx.toFloat(), borderColor)

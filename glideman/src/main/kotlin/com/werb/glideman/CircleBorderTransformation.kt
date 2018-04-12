@@ -23,7 +23,7 @@ class CircleBorderTransformation(borderWidth: Float, private val borderColor: In
         val bitmap = pool.get(destMinEdge, destMinEdge, getAlphaSafeConfig(toTransform)).apply { setHasAlpha(true) }
         val alphaSafeBitmap = getAlphaSafeBitmap(pool, toTransform)
         val canvas = Canvas(bitmap)
-        canvas.drawCircle(radius, radius, radius - borderWidthPx, getPaint(destMinEdge - 2 * borderWidthPx, destMinEdge - 2 * borderWidthPx, alphaSafeBitmap))
+        canvas.drawCircle(radius, radius, radius - borderWidthPx, getShaderPaint(destMinEdge - 2 * borderWidthPx, destMinEdge - 2 * borderWidthPx, alphaSafeBitmap))
         // draw border
         val boardPaint = getBoardPaint(borderWidthPx.toFloat(), borderColor)
         canvas.drawCircle(radius, radius, radius - borderWidthPx / 2, boardPaint)
