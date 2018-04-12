@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
             GlideApp.with(this)
                 .load(url)
                 .transition(withCrossFade())
-                .transforms(MaskColorTransformation(resources.getColor(R.color.colorAlpha)), CircleTransformation())
+                .transforms(MaskShapeTransformation(resources.getDrawable(R.drawable.im_to_message_bg)))
                 .into(imageView1)
             GlideApp.with(this)
                 .load(url)
