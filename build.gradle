@@ -18,8 +18,8 @@ buildscript {
     // app version
     ext.versions = [
             applicationId    : "com.werb.glideman.demo",
-            versionCode      : 2,
-            versionName      : "0.1.1",
+            versionCode      : 3,
+            versionName      : "0.1.2",
             minSdkVersion    : 19,
             targetSdkVersion : 27,
             compileSdkVersion: 27,
