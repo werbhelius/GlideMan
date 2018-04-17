@@ -28,7 +28,7 @@ class RoundTransformation(corner: Float) : BitmapTransformation(), Transformatio
 
         // save in pool to reuse
         if (alphaSafeBitmap != toTransform) {
-            pool.put(toTransform)
+            pool.put(alphaSafeBitmap)
         }
         return bitmap
 

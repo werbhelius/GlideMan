@@ -37,7 +37,7 @@ class PixelTransformation(blockSize: Float = 1f) : BitmapTransformation(), Trans
 
         // save in pool to reuse
         if (alphaSafeBitmap != toTransform) {
-            pool.put(toTransform)
+            pool.put(alphaSafeBitmap)
         }
         return bitmap
 

@@ -48,7 +48,7 @@ class BlurTransformation(context: Context, private val blurRadius: Float) : Bitm
         canvas.drawBitmap(alphaSafeBitmap, matrix, getDefaultPaint())
         // save in pool to reuse
         if (alphaSafeBitmap != toTransform) {
-            pool.put(toTransform)
+            pool.put(alphaSafeBitmap)
         }
         return bitmap
 

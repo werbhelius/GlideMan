@@ -32,7 +32,7 @@ class RoundBorderTransformation(corner: Float, borderWidth: Float, private val b
 
         // save in pool to reuse
         if (alphaSafeBitmap != toTransform) {
-            pool.put(toTransform)
+            pool.put(alphaSafeBitmap)
         }
         return bitmap
 

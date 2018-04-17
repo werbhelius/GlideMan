@@ -29,7 +29,7 @@ class MaskShapeTransformation(drawable: Drawable): BitmapTransformation(), Trans
         clear(canvas)
         // save in pool to reuse
         if (alphaSafeBitmap != toTransform) {
-            pool.put(toTransform)
+            pool.put(alphaSafeBitmap)
         }
         return bitmap
     }
