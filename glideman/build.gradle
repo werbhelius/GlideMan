@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion versions.compileSdkVersion
@@ -32,4 +31,14 @@ dependencies {
     implementation('com.github.bumptech.glide:glide:4.6.1'){
         exclude group: "com.android.support"
     }
+}
+
+apply plugin: 'com.novoda.bintray-release'
+publish {
+    userOrg = 'werbhelius'
+    groupId = 'com.werb.glideman'
+    artifactId = 'glideman'
+    publishVersion = '0.1.0'
+    desc = 'Glide Transforms'
+    website = 'https://github.com/Werb/GlideMan'
 }
