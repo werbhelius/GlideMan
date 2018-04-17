@@ -38,7 +38,7 @@ publish {
     userOrg = 'werbhelius'
     groupId = 'com.werb.glideman'
     artifactId = 'glideman'
-    publishVersion = '0.1.0'
+    publishVersion =  versions.versionName
     desc = 'Glide Transforms'
     website = 'https://github.com/Werb/GlideMan'
 }
