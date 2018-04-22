@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = GridLayoutManager(this, 2)
         recyclerView.adapter = adapter
 
-        (1..20).forEach {
+        (1..9).forEach {
             adapter.loadData(ImageItem())
         }
 
