@@ -12,7 +12,7 @@ implementation 'com.werb.glideman:glideman:0.1.2'
 ```
 
 ## Preview
-<img src="./screenshot/glideman.png" alt="glideman" style="width: 360px;"/>
+<img src="./screenshot/glideman.png" alt="glideman" width="360" />
 
 ## Use
 [CircleTransformation](https://github.com/Werb/GlideMan/blob/master/app/src/main/kotlin/com/werb/glideman/demo/ImageViewHolder.kt#L21)
