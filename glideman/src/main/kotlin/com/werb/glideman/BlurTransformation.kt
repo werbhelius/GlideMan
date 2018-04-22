@@ -29,7 +29,7 @@ class BlurTransformation(context: Context, private val blurRadius: Float) : Bitm
         val bitmap = pool.get(outWidth, outWidth, getAlphaSafeConfig(toTransform)).apply { setHasAlpha(true) }
         val alphaSafeBitmap = getAlphaSafeBitmap(pool, toTransform)
         val canvas = Canvas(bitmap)
-        weakContext.get()?.let {
+        weakContext.get()?.applicationContext.let {
             val renderScript = RenderScript.create(it)
             val input = Allocation.createFromBitmap(renderScript, alphaSafeBitmap)
             val output = Allocation.createTyped(renderScript, input.type)
