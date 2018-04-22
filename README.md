@@ -12,4 +12,23 @@ implementation 'com.werb.glideman:glideman:0.1.2'
 ```
 
 ## Preview
-![glideman](./screenshot/glideman.png | width=360)
+<img src="./screenshot/glideman.png" alt="glideman" style="width: 360px;"/>
+
+## Use
+[CircleTransformation](https://github.com/Werb/GlideMan/blob/master/app/src/main/kotlin/com/werb/glideman/demo/ImageViewHolder.kt#L21)
+
+[RoundTransformation](https://github.com/Werb/GlideMan/blob/master/app/src/main/kotlin/com/werb/glideman/demo/ImageViewHolder.kt#L24)
+
+[CircleBorderTransformation](https://github.com/Werb/GlideMan/blob/master/app/src/main/kotlin/com/werb/glideman/demo/ImageViewHolder.kt#L27)
+
+[CircleBorderWithPaddingTransformation](https://github.com/Werb/GlideMan/blob/master/app/src/main/kotlin/com/werb/glideman/demo/ImageViewHolder.kt#L30)
+
+[MaskColorTransformation](https://github.com/Werb/GlideMan/blob/master/app/src/main/kotlin/com/werb/glideman/demo/ImageViewHolder.kt#L37)
+
+[MaskShapeTransformation](https://github.com/Werb/GlideMan/blob/master/app/src/main/kotlin/com/werb/glideman/demo/ImageViewHolder.kt#L40)
+
+[PixelTransformation](https://github.com/Werb/GlideMan/blob/master/app/src/main/kotlin/com/werb/glideman/demo/ImageViewHolder.kt#L43)
+
+[BlurTransformation](https://github.com/Werb/GlideMan/blob/master/app/src/main/kotlin/com/werb/glideman/demo/ImageViewHolder.kt#L46)
+
+[RoundBorderTransformation](https://github.com/Werb/GlideMan/blob/master/app/src/main/kotlin/com/werb/glideman/demo/ImageViewHolder.kt#L49)
