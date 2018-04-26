@@ -2,6 +2,7 @@ package com.werb.glideman.demo
 
 import android.graphics.Color
 import android.view.View
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.werb.glideman.*
 import com.werb.library.MoreViewHolder
 import com.werb.library.link.LayoutID
@@ -40,7 +41,7 @@ class ImageViewHolder(containerView: View) : MoreViewHolder<ImageItem>(container
                 request.transform(MaskShapeTransformation(containerView.context.resources.getDrawable(R.drawable.im_to_message_bg)))
             }
             6 -> {
-                request.transform(PixelTransformation(3f))
+                request.transforms(CenterCrop(),PixelTransformation(3f))
             }
             7 -> {
                 request.transform(BlurTransformation(containerView.context, 4f))
