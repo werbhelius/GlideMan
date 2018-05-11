@@ -40,6 +40,12 @@ interface TransformationConfig {
         shader = getPaintShader(targetWidth, targetHeight, alphaSafeBitmap)
     }
 
+    fun getShaderPaint(alphaSafeBitmap: Bitmap) = Paint().apply {
+        isAntiAlias = true
+        isDither = true
+        shader = BitmapShader(alphaSafeBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
+    }
+
     fun getBoardPaint(borderWidth: Float, borderColor: Int) = Paint().apply {
         isAntiAlias = true
         isDither = true

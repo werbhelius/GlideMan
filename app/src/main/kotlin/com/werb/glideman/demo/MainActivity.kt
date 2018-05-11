@@ -3,6 +3,7 @@ package com.werb.glideman.demo
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import com.werb.library.MoreAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 

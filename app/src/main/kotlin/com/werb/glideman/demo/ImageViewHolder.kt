@@ -17,12 +17,12 @@ class ImageViewHolder(containerView: View) : MoreViewHolder<ImageItem>(container
     override fun bindData(data: ImageItem, payloads: List<Any>) {
         val request = GlideApp.with(containerView)
             .load(data.url)
-        when(layoutPosition){
+        when (layoutPosition) {
             0 -> {
                 request.transform(CircleTransformation())
             }
             1 -> {
-                request.transform(RoundTransformation(5f))
+                request.transforms(CenterCrop(), RoundTransformation(5f))
             }
             2 -> {
                 request.transform(CircleBorderTransformation(5f, Color.parseColor("#FD7013")))
@@ -41,7 +41,7 @@ class ImageViewHolder(containerView: View) : MoreViewHolder<ImageItem>(container
                 request.transform(MaskShapeTransformation(containerView.context.resources.getDrawable(R.drawable.im_to_message_bg)))
             }
             6 -> {
-                request.transforms(CenterCrop(),PixelTransformation(3f))
+                request.transforms(CenterCrop(), PixelTransformation(3f))
             }
             7 -> {
                 request.transform(BlurTransformation(containerView.context, 4f))

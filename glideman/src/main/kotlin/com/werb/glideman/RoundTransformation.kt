@@ -18,11 +18,11 @@ class RoundTransformation(corner: Float) : BitmapTransformation(), Transformatio
 
     override fun transform(pool: BitmapPool, toTransform: Bitmap, outWidth: Int, outHeight: Int): Bitmap {
 
-        val bitmap = pool.get(outWidth, outWidth, getAlphaSafeConfig(toTransform)).apply { setHasAlpha(true) }
+        val bitmap = pool.get(toTransform.width, toTransform.height, getAlphaSafeConfig(toTransform)).apply { setHasAlpha(true) }
         val alphaSafeBitmap = getAlphaSafeBitmap(pool, toTransform)
         val canvas = Canvas(bitmap)
-        val paint = getShaderPaint(outWidth, outWidth, alphaSafeBitmap)
-        val rectF = RectF(0f, 0f, outWidth.toFloat(), outWidth.toFloat())
+        val paint = getShaderPaint(alphaSafeBitmap)
+        val rectF = RectF(0f, 0f, toTransform.width.toFloat(), toTransform.height.toFloat())
         canvas.drawRoundRect(rectF, cornerFloat.toFloat(), cornerFloat.toFloat(), paint)
         clear(canvas)
 

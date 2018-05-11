@@ -17,7 +17,7 @@ class PixelTransformation(blockSize: Float = 1f) : BitmapTransformation(), Trans
     private val blockSizeFloat = dip2px(blockSize)
 
     override fun transform(pool: BitmapPool, toTransform: Bitmap, outWidth: Int, outHeight: Int): Bitmap {
-        val bitmap = pool.get(outWidth, outWidth, getAlphaSafeConfig(toTransform)).apply { setHasAlpha(true) }
+        val bitmap = pool.get(toTransform.width, toTransform.height,getAlphaSafeConfig(toTransform)).apply { setHasAlpha(true) }
         val alphaSafeBitmap = getAlphaSafeBitmap(pool, toTransform)
         val canvas = Canvas(bitmap)
 
