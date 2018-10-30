@@ -32,3 +32,5 @@ implementation 'com.werb.glideman:glideman:0.1.4'
 [BlurTransformation](https://github.com/Werb/GlideMan/blob/master/app/src/main/kotlin/com/werb/glideman/demo/ImageViewHolder.kt#L46)
 
 [RoundBorderTransformation](https://github.com/Werb/GlideMan/blob/master/app/src/main/kotlin/com/werb/glideman/demo/ImageViewHolder.kt#L49)
+
+[RoundDetailTransformation](https://github.com/Werb/GlideMan/blob/master/app/src/main/kotlin/com/werb/glideman/demo/ImageViewHolder.kt#L52)
