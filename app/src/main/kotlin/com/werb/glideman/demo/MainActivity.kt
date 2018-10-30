@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = GridLayoutManager(this, 2)
         recyclerView.adapter = adapter
 
-        (1..9).forEach {
+        (1..10).forEach { _ ->
             adapter.loadData(ImageItem())
         }
 

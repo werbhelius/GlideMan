@@ -49,6 +49,9 @@ class ImageViewHolder(containerView: View) : MoreViewHolder<ImageItem>(container
             8 -> {
                 request.transform(RoundBorderTransformation(5f, 5f, Color.parseColor("#FD7013")))
             }
+            9 -> {
+                request.transforms(CenterCrop(), RoundDetailTransformation(5f, 5f, 0f, 0f))
+            }
         }
         request.into(image)
     }
