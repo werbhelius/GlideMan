@@ -8,7 +8,7 @@
 
  ## Dependency
  ```gradle
-implementation 'com.werb.glideman:glideman:0.1.4'
+implementation 'com.werb.glideman:glideman:0.1.5'
 ```
 
 ## Preview
