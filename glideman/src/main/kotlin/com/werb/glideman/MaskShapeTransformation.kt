@@ -10,7 +10,7 @@ import java.security.MessageDigest
 /**
  * Created by wanbo on 2018/4/12.
  */
-class MaskShapeTransformation(drawable: Drawable): BitmapTransformation(), TransformationConfig {
+class MaskShapeTransformation(private val drawable: Drawable, private val mode: PorterDuff.Mode = PorterDuff.Mode.SRC_IN ): BitmapTransformation(), TransformationConfig {
 
     private val id = this::class.java.name
     private val weakDrawable = SoftReference(drawable)
@@ -22,7 +22,7 @@ class MaskShapeTransformation(drawable: Drawable): BitmapTransformation(), Trans
         weakDrawable.get()?.setBounds(0, 0, outWidth, outHeight)
         weakDrawable.get()?.draw(canvas)
         val matrix = getMatrix(outWidth, outHeight, alphaSafeBitmap.width, alphaSafeBitmap.height)
-        canvas.drawBitmap(alphaSafeBitmap, matrix, getDefaultPaint().apply { xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN) })
+        canvas.drawBitmap(alphaSafeBitmap, matrix, getDefaultPaint().apply { xfermode = PorterDuffXfermode(mode) })
         clear(canvas)
         // save in pool to reuse
         if (alphaSafeBitmap != toTransform) {

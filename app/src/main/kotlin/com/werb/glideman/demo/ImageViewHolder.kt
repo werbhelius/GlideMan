@@ -1,6 +1,7 @@
 package com.werb.glideman.demo
 
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.view.View
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.werb.glideman.*
