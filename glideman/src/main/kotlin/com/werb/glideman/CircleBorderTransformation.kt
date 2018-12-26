@@ -26,7 +26,7 @@ class CircleBorderTransformation(borderWidth: Float, private val borderColor: In
         canvas.drawCircle(radius, radius, radius - borderWidthPx, getShaderPaint(destMinEdge - 2 * borderWidthPx, destMinEdge - 2 * borderWidthPx, alphaSafeBitmap))
         // draw border
         val boardPaint = getBoardPaint(borderWidthPx.toFloat(), borderColor)
-        canvas.drawCircle(radius, radius, radius - borderWidthPx, boardPaint)
+        canvas.drawCircle(radius, radius, radius - borderWidthPx / 2f, boardPaint)
 
         clear(canvas)
 

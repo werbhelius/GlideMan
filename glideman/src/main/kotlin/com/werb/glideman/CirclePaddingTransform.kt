@@ -28,7 +28,7 @@ class CirclePaddingTransform(padding: Float) : BitmapTransformation(), Transform
         val scale = (destMinEdge - 2 * paddingDp).toFloat() / destMinEdge
 
         val canvas = Canvas(bitmap)
-        canvas.drawCircle(destMinEdge.toFloat() / 2, destMinEdge.toFloat() / 2, destMinEdge.toFloat() / 2, Paint().apply {
+        canvas.drawCircle(destMinEdge.toFloat() / 2f, destMinEdge.toFloat() / 2f, destMinEdge.toFloat() / 2f, Paint().apply {
             isAntiAlias = true
             isDither = true
             shader = BitmapShader(alphaSafeBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP).apply {

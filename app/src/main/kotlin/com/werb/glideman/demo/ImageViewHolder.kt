@@ -26,7 +26,7 @@ class ImageViewHolder(containerView: View) : MoreViewHolder<ImageItem>(container
                 request.transforms(CenterCrop(), RoundTransformation(5f))
             }
             2 -> {
-                request.transform(CircleBorderTransformation(5f, Color.parseColor("#FD7013")))
+                request.transform(CircleBorderTransformation(5f, Color.parseColor("#FFFFFF")))
             }
             3 -> {
                 request.transform(CircleBorderWithPaddingTransformation(

@@ -32,10 +32,10 @@ class CircleBorderWithPaddingTransformation(borderWidth: Float,
         canvas.drawCircle(radius, radius, radius - diff + 1, getShaderPaint(destMinEdge - 2 * diff, destMinEdge - 2 * diff, alphaSafeBitmap))
         // draw border
         val boardPaint = getBoardPaint(borderWidthPx.toFloat(), borderColor)
-        canvas.drawCircle(radius, radius, radius - borderWidthPx / 2f, boardPaint)
+        canvas.drawCircle(radius, radius, radius - borderWidthPx.toFloat() / 2f, boardPaint)
         // draw padding
         val paddingPaint = getBoardPaint(paddingWidthPx.toFloat(), paddingColor)
-        canvas.drawCircle(radius, radius, radius - borderWidthPx - paddingWidthPx / 2, paddingPaint)
+        canvas.drawCircle(radius, radius, radius - borderWidthPx - paddingWidthPx.toFloat() / 2f, paddingPaint)
         clear(canvas)
 
         // save in pool to reuse

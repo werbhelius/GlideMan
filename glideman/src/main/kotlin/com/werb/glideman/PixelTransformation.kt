@@ -26,9 +26,9 @@ class PixelTransformation(blockSize: Float = 1f) : BitmapTransformation(), Trans
                 val pixelCoordX = blockSizeFloat * width
                 val pixelCoordY = blockSizeFloat * height
                 if (pixelCoordX + blockSizeFloat < outWidth && pixelCoordY + blockSizeFloat < outHeight) {
-                    val midX = pixelCoordX + blockSizeFloat / 2
-                    val midY = pixelCoordY + blockSizeFloat / 2
-                    val paint = getDefaultPaint(alphaSafeBitmap.getPixel(midX, midY))
+                    val midX = pixelCoordX + blockSizeFloat / 2f
+                    val midY = pixelCoordY + blockSizeFloat / 2f
+                    val paint = getDefaultPaint(alphaSafeBitmap.getPixel(midX.toInt(), midY.toInt()))
                     val rectF = RectF(pixelCoordX.toFloat(), pixelCoordY.toFloat(), pixelCoordX.toFloat() + blockSizeFloat, pixelCoordY.toFloat() + blockSizeFloat)
                     canvas.drawRect(rectF, paint)
                 }
