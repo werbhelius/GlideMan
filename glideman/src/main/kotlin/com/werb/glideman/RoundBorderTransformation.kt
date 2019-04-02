@@ -19,14 +19,14 @@ class RoundBorderTransformation(corner: Float, borderWidth: Float, private val b
 
     override fun transform(pool: BitmapPool, toTransform: Bitmap, outWidth: Int, outHeight: Int): Bitmap {
 
-        val bitmap = pool.get(outWidth, outWidth, getAlphaSafeConfig(toTransform)).apply { setHasAlpha(true) }
+        val bitmap = pool.get(outWidth, outHeight, getAlphaSafeConfig(toTransform)).apply { setHasAlpha(true) }
         val alphaSafeBitmap = getAlphaSafeBitmap(pool, toTransform)
         val canvas = Canvas(bitmap)
-        val paint = getShaderPaint(outWidth, outWidth, alphaSafeBitmap)
-        val rectF = RectF(0f, 0f, outWidth.toFloat(), outWidth.toFloat())
+        val paint = getShaderPaint(outWidth, outHeight, alphaSafeBitmap)
+        val rectF = RectF(0f, 0f, outWidth.toFloat(), outHeight.toFloat())
         canvas.drawRoundRect(rectF, cornerFloat.toFloat(), cornerFloat.toFloat(), paint)
         val boardPaint = getBoardPaint(borderWidthPx.toFloat(), borderColor)
-        val rectF2 = RectF(borderWidthPx / 2f, borderWidthPx / 2f, outWidth.toFloat() - borderWidthPx / 2f, outWidth.toFloat() - borderWidthPx / 2f)
+        val rectF2 = RectF(borderWidthPx / 2f, borderWidthPx / 2f, outWidth.toFloat() - borderWidthPx / 2f, outHeight.toFloat() - borderWidthPx / 2f)
         canvas.drawRoundRect(rectF2, cornerFloat - borderWidthPx / 2f, cornerFloat - borderWidthPx / 2f, boardPaint)
         clear(canvas)
 
